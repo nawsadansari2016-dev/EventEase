@@ -1,0 +1,25 @@
+@page "/add-event"
+@using EventEase.Models
+@inject NavigationManager NavManager
+
+<h3>Add New Event</h3>
+
+<EditForm Model="@newEvent" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <InputText @bind-Value="newEvent.Name" class="form-control" placeholder="Event Name" />
+    <InputText @bind-Value="newEvent.Location" class="form-control mt-2" placeholder="Location" />
+    <InputDate @bind-Value="newEvent.Date" class="form-control mt-2" />
+    <InputTextArea @bind-Value="newEvent.Description" class="form-control mt-2" placeholder="Description" />
+    <button type="submit" class="btn btn-success mt-3">Add Event</button>
+</EditForm>
+
+@code {
+    private Event newEvent = new();
+
+    private void HandleValidSubmit()
+    {
+        // In a fuller app we'd save the event; here we navigate back to home.
+        NavManager.NavigateTo("/");
+    }
+}

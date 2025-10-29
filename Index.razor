@@ -1,0 +1,22 @@
+@page "/"
+@using EventEase.Models
+
+<h2>Upcoming Events</h2>
+
+@foreach (var e in Events)
+{
+    <div class="card p-3 m-2">
+        <h4>@e.Name</h4>
+        <p><strong>Date:</strong> @e.Date.ToShortDateString()</p>
+        <p><strong>Location:</strong> @e.Location</p>
+        <p>@e.Description</p>
+    </div>
+}
+
+@code {
+    private List<Event> Events = new()
+    {
+        new Event { Id = 1, Name = "Tech Conference", Location = "Bhubaneswar", Description = "A local startup meetup.", Date = DateTime.Now.AddDays(7) },
+        new Event { Id = 2, Name = "Coding Workshop", Location = "Odisha Tech Park", Description = "Learn Blazor with Copilot.", Date = DateTime.Now.AddDays(14) }
+    };
+}
